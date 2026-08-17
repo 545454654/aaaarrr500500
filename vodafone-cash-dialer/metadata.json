@@ -1,0 +1,6 @@
+{
+  "name": "Vodafone Cash Dialer",
+  "description": "Realistic mobile dialer simulator for Vodafone Cash money transfers and USSD operations with PIN confirmation, balance tracking, SMS receipts, and transaction history.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
