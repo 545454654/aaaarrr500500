@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>لوحة الاتصال ومحفظة فودافون كاش | Vodafone Cash Phone Dialer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif; user-select: none; }
+    .font-mono { font-family: 'Plus Jakarta Sans', monospace; }
+  </style>
+</head>
+<body class="bg-zinc-950 flex items-center justify-center min-h-screen p-0 sm:p-4 text-zinc-900">
+
+  <!-- Main Phone Frame -->
+  <div class="w-full max-w-[430px] h-[100dvh] sm:h-[880px] bg-white sm:rounded-[44px] shadow-2xl overflow-hidden flex flex-col relative border-0 sm:border-[10px] sm:border-zinc-800">
+    
+    <!-- Top Bar -->
+    <div class="w-full bg-white px-5 pt-3 pb-1 flex items-center justify-between z-10">
+      <div class="flex items-center gap-4">
+        <!-- Settings Hexagon Icon -->
+        <button onclick="openWalletSettings()" class="p-1 text-zinc-800 hover:bg-zinc-100 rounded-full transition-colors" title="إعدادات المحفظة">
+          <svg class="w-6 h-6 stroke-zinc-800 fill-none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.5L20.66 7.5V17.5L12 22.5L3.34 17.5V7.5L12 2.5Z" />
+            <circle cx="12" cy="12" r="2.5" class="fill-zinc-800 stroke-none" />
+          </svg>
+        </button>
+        <!-- Search Icon -->
+        <button onclick="openWalletSettings()" class="p-1 text-zinc-800 hover:bg-zinc-100 rounded-full transition-colors" title="البحث">
+          <svg class="w-6 h-6 stroke-zinc-800 fill-none" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+      <div></div>
+    </div>
+
+    <!-- Recent Calls Section -->
+    <div class="w-full flex-1 flex flex-col overflow-y-auto px-5 py-1">
+      <div class="pt-2 pb-1 text-right">
+        <h1 class="text-[28px] font-bold text-zinc-950 tracking-tight">الحديثة</h1>
+      </div>
+      <div class="flex items-center justify-start gap-8 pb-3 border-b border-zinc-100">
+        <button class="relative pb-2 text-[15px] font-bold text-zinc-900">
+          الكل
+          <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00C853] rounded-full"></div>
+        </button>
+        <button class="relative pb-2 text-[15px] font-normal text-zinc-400">
+          مكالمات لم يرد عليها
+        </button>
+      </div>
+
+      <!-- Recents List -->
+      <div id="recent-list" class="flex-1 space-y-0.5 pt-2 pb-2">
+        <div class="flex items-center justify-between py-3 px-1 hover:bg-zinc-50 cursor-pointer" onclick="setDial('01010375025')">
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-full flex items-center justify-center text-zinc-400">
+              <svg class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <span class="text-[13px] font-normal text-zinc-400 font-mono">8/10</span>
+          </div>
+          <div class="flex items-center justify-end gap-3.5">
+            <div class="flex flex-col items-end text-right">
+              <span class="text-[17px] font-bold text-zinc-950 leading-snug">ميرا عمري</span>
+              <span class="text-xs text-zinc-400 font-normal">01010375025 • الجوال</span>
+            </div>
+            <svg class="w-4 h-4 text-zinc-400 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between py-3 px-1 hover:bg-zinc-50 cursor-pointer" onclick="setDial('01098688815')">
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-full flex items-center justify-center text-zinc-400">
+              <svg class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <span class="text-[13px] font-normal text-zinc-400 font-mono">8/6</span>
+          </div>
+          <div class="flex items-center justify-end gap-3.5">
+            <div class="flex flex-col items-end text-right">
+              <span class="text-[17px] font-bold text-zinc-950 leading-snug">بابا</span>
+              <span class="text-xs text-zinc-400 font-normal">01098688815 • الجوال</span>
+            </div>
+            <svg class="w-4 h-4 text-emerald-500 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2.2"><line x1="17" y1="7" x2="7" y2="17"/><polyline points="17 17 7 17 7 7"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keypad Section (1 on Left, 2 in Middle, 3 on Right) -->
+    <div dir="ltr" class="w-full bg-white flex flex-col items-center select-none pt-1 pb-2 px-6 border-t border-zinc-100">
+      <div class="w-full flex items-center justify-between min-h-[44px] px-2 mb-1">
+        <div class="w-8"></div>
+        <div id="dial-display" class="flex-1 text-center font-mono text-[26px] font-semibold text-[#DE4F38] tracking-wider truncate">
+          <span class="text-zinc-300 text-base font-normal font-sans" dir="rtl">اطلب رقماً أو كوداً...</span>
+        </div>
+        <button id="del-btn" onclick="deleteChar()" class="w-8 h-8 flex items-center justify-center text-[#DE4F38] hover:bg-red-50 rounded-full hidden">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"/></svg>
+        </button>
+      </div>
+
+      <!-- Keys Grid (1 on Left, 2 in Middle, 3 on Right) -->
+      <div class="w-full max-w-[340px] grid grid-cols-3 gap-y-2.5 gap-x-6 my-1">
+        <button onclick="pressKey('1')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">1</span>
+          <span class="text-xs text-zinc-400 mt-0.5 leading-none">➿</span>
+        </button>
+        <button onclick="pressKey('2')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">2</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider uppercase leading-none">ABC</span>
+        </button>
+        <button onclick="pressKey('3')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">3</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider uppercase leading-none">DEF</span>
+        </button>
+
+        <button onclick="pressKey('4')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">4</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider uppercase leading-none">GHI</span>
+        </button>
+        <button onclick="pressKey('5')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">5</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider uppercase leading-none">JKL</span>
+        </button>
+        <button onclick="pressKey('6')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">6</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider uppercase leading-none">MNO</span>
+        </button>
+
+        <button onclick="pressKey('7')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">7</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider uppercase leading-none">PQRS</span>
+        </button>
+        <button onclick="pressKey('8')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">8</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider uppercase leading-none">TUV</span>
+        </button>
+        <button onclick="pressKey('9')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">9</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider uppercase leading-none">WXYZ</span>
+        </button>
+
+        <button onclick="pressKey('*')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">*</span>
+        </button>
+        <button onclick="pressKey('0')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">0</span>
+          <span class="text-[10px] font-medium text-zinc-400 mt-0.5 tracking-wider leading-none">+</span>
+        </button>
+        <button onclick="pressKey('#')" class="flex flex-col items-center justify-center h-[54px] w-full rounded-2xl active:bg-zinc-100 hover:bg-zinc-50">
+          <span class="text-[28px] font-normal text-zinc-900 leading-none">#</span>
+        </button>
+      </div>
+
+      <!-- Action Row: 6-dots on Left, WhatsApp in Middle, Call on Right -->
+      <div class="w-full max-w-[340px] flex items-center justify-between px-2 mt-2.5">
+        <button onclick="openWalletSettings()" class="w-11 h-11 flex items-center justify-center rounded-full text-zinc-800 hover:bg-zinc-100 active:scale-95">
+          <svg class="w-6 h-6 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2.2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="19" cy="5" r="1"/><circle cx="5" cy="5" r="1"/></svg>
+        </button>
+
+        <button onclick="openWhatsApp()" class="w-12 h-12 flex items-center justify-center rounded-full bg-[#25D366] text-white hover:bg-[#20bd5a] active:scale-95 shadow-sm">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        </button>
+
+        <button onclick="makeCall()" class="flex-1 max-w-[155px] h-12 flex items-center justify-center rounded-full bg-[#00C853] hover:bg-[#00B248] text-white active:scale-95 shadow-md shadow-emerald-500/20">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="w-full bg-white border-t border-zinc-100 flex items-center justify-around py-2.5 px-6">
+      <button class="flex flex-col items-center gap-1 text-zinc-400">
+        <svg class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span class="text-xs font-semibold">المفضلة</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 text-[#00C853]">
+        <svg class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="text-xs font-bold">الحديثة</span>
+      </button>
+      <button onclick="openWalletSettings()" class="flex flex-col items-center gap-1 text-zinc-400">
+        <svg class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="text-xs font-semibold">جهات الاتصال</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Wallet Settings Modal (HTML) -->
+  <div id="wallet-modal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 hidden select-none">
+    <div class="w-full max-w-md bg-white rounded-[28px] shadow-2xl overflow-hidden flex flex-col max-h-[92vh] border border-zinc-200">
+      <div class="px-5 py-4 bg-[#DE4F38] text-white flex items-center justify-between">
+        <button onclick="closeWalletSettings()" class="p-1 text-white/80 hover:text-white rounded-full">
+          <svg class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <span class="text-base font-bold">إعدادات محفظة فودافون كاش</span>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 text-right">
+        <!-- Balance Card -->
+        <div class="bg-zinc-900 text-white rounded-2xl p-5 border border-zinc-800 shadow-md">
+          <div class="flex items-center justify-between text-xs text-zinc-400 mb-2">
+            <span class="bg-[#DE4F38] text-white px-2.5 py-0.5 rounded-full text-[11px] font-bold">Vodafone Cash</span>
+            <span class="text-zinc-300 font-semibold">رصيد المحفظة الحالي</span>
+          </div>
+          <div class="text-3xl font-extrabold text-white tracking-tight flex items-baseline justify-end gap-1.5 font-mono py-1">
+            <span class="text-sm text-zinc-400 font-normal">ج.م</span>
+            <span id="modal-balance-display">23,467.00</span>
+          </div>
+          <div class="flex items-center justify-between pt-3 mt-3 border-t border-zinc-800 text-xs text-zinc-300">
+            <span class="text-emerald-400 font-bold">نشطة ومؤكدة ✓</span>
+            <span>الرقم السري: <strong id="modal-pin-display" class="font-mono text-amber-400">500500</strong></span>
+          </div>
+        </div>
+
+        <!-- Deposit Section -->
+        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] text-zinc-500">أدخل أي مبلغ لإضافته فوراً</span>
+            <span class="text-xs font-bold text-zinc-900">إيداع رصيد في المحفظة (Deposit)</span>
+          </div>
+
+          <div class="flex items-center gap-1.5 justify-end flex-wrap">
+            <button onclick="setDepositVal(10)" class="px-2.5 py-1 bg-white border border-zinc-200 rounded-lg text-xs font-mono font-bold text-zinc-700 hover:border-emerald-500">+10 ج.م</button>
+            <button onclick="setDepositVal(50)" class="px-2.5 py-1 bg-white border border-zinc-200 rounded-lg text-xs font-mono font-bold text-zinc-700 hover:border-emerald-500">+50 ج.م</button>
+            <button onclick="setDepositVal(100)" class="px-2.5 py-1 bg-white border border-zinc-200 rounded-lg text-xs font-mono font-bold text-zinc-700 hover:border-emerald-500">+100 ج.م</button>
+            <button onclick="setDepositVal(500)" class="px-2.5 py-1 bg-white border border-zinc-200 rounded-lg text-xs font-mono font-bold text-zinc-700 hover:border-emerald-500">+500 ج.م</button>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="performDeposit()" class="px-4 h-10 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white rounded-xl text-xs font-bold shadow-sm">
+              إيداع الآن
+            </button>
+            <div class="relative flex-1">
+              <input id="deposit-input" type="number" value="10" placeholder="المبلغ (مثال: 10)" class="w-full h-10 px-3 bg-white border border-zinc-300 rounded-xl text-right font-mono text-sm font-semibold outline-none focus:border-emerald-600" />
+              <span class="absolute left-3 top-2.5 text-xs text-zinc-400 pointer-events-none">ج.م</span>
+            </div>
+          </div>
+          <div id="deposit-msg" class="text-xs text-emerald-600 font-bold hidden"></div>
+        </div>
+
+        <!-- Change Password Section -->
+        <div class="bg-zinc-50 border border-zinc-200 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] text-zinc-500">الرقم السري لتأكيد المعاملات</span>
+            <span class="text-xs font-bold text-zinc-900">تغيير الرقم السري (Change Password)</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="saveNewPassword()" class="px-4 h-10 bg-[#DE4F38] hover:bg-red-700 active:scale-95 text-white rounded-xl text-xs font-bold shadow-sm">
+              حفظ الرقم السري
+            </button>
+            <input id="new-pin-input" type="text" maxLength="6" placeholder="رقم سري جديد (مثال: 500500)" class="flex-1 h-10 px-3 bg-white border border-zinc-300 rounded-xl text-center font-mono text-sm font-bold tracking-widest outline-none focus:border-[#DE4F38]" />
+          </div>
+          <div id="pin-msg" class="text-xs text-emerald-600 font-bold hidden"></div>
+        </div>
+
+        <!-- Quick USSD Codes -->
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold text-zinc-800">أكواد فودافون كاش السريعة</span>
+          <button onclick="setDial('*9*7*01010375025*100#'); closeWalletSettings();" class="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-2.5 flex items-center justify-between text-right">
+            <span class="text-xs text-zinc-500">نسخ</span>
+            <div>
+              <div class="text-xs font-bold text-zinc-900">تحويل 100 ج.م إلى ميرا عمري</div>
+              <div class="text-[11px] font-mono text-red-600" dir="ltr">*9*7*01010375025*100#</div>
+            </div>
+          </button>
+          <button onclick="setDial('*9#'); closeWalletSettings();" class="w-full bg-zinc-50 border border-zinc-200 rounded-xl p-2.5 flex items-center justify-between text-right">
+            <span class="text-xs text-zinc-500">نسخ</span>
+            <div>
+              <div class="text-xs font-bold text-zinc-900">قائمة فودافون كاش الرئيسية</div>
+              <div class="text-[11px] font-mono text-red-600" dir="ltr">*9#</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Voice Calling Screen (HTML) -->
+  <div id="call-screen" class="fixed inset-0 z-50 bg-gradient-to-b from-zinc-900 via-zinc-900 to-black text-white flex flex-col justify-between p-6 hidden select-none animate-in fade-in">
+    <div class="flex flex-col items-center pt-8 text-center">
+      <div class="w-24 h-24 rounded-full bg-zinc-800 border-2 border-zinc-700 flex items-center justify-center text-3xl font-bold mb-4 shadow-2xl">
+        <span id="call-avatar">م</span>
+      </div>
+      <h2 id="call-name" class="text-2xl font-bold text-white mb-1">01010375025</h2>
+      <p id="call-number" class="text-sm font-mono text-zinc-400 dir-ltr mb-3">01010375025</p>
+      <span id="call-status-badge" class="text-xs px-3.5 py-1 rounded-full font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
+        جاري الاتصال...
+      </span>
+    </div>
+
+    <div class="w-full max-w-xs mx-auto space-y-6">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <button class="flex flex-col items-center gap-1.5">
+          <div class="w-14 h-14 rounded-full bg-zinc-800 text-white flex items-center justify-center">🎤</div>
+          <span class="text-[11px] text-zinc-300">كتم الصوت</span>
+        </button>
+        <button class="flex flex-col items-center gap-1.5">
+          <div class="w-14 h-14 rounded-full bg-zinc-800 text-white flex items-center justify-center">⌨️</div>
+          <span class="text-[11px] text-zinc-300">المفاتيح</span>
+        </button>
+        <button class="flex flex-col items-center gap-1.5">
+          <div class="w-14 h-14 rounded-full bg-zinc-800 text-white flex items-center justify-center">🔊</div>
+          <span class="text-[11px] text-zinc-300">مكبر الصوت</span>
+        </button>
+      </div>
+
+      <div class="flex justify-center pt-2">
+        <button onclick="endCall()" class="w-16 h-16 rounded-full bg-[#DE4F38] text-white flex items-center justify-center shadow-lg active:scale-95">
+          <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let dialText = '';
+    let currentBalance = 23467.00;
+    let walletPin = '500500';
+    let callTimerInterval = null;
+    let callSeconds = 0;
+
+    function updateDisplay() {
+      const display = document.getElementById('dial-display');
+      const delBtn = document.getElementById('del-btn');
+      if (dialText.length > 0) {
+        display.innerHTML = '<span>' + dialText + '</span>';
+        delBtn.classList.remove('hidden');
+      } else {
+        display.innerHTML = '<span class="text-zinc-300 text-base font-normal font-sans" dir="rtl">اطلب رقماً أو كوداً...</span>';
+        delBtn.classList.add('hidden');
+      }
+    }
+
+    function pressKey(k) {
+      dialText += k;
+      updateDisplay();
+    }
+
+    function deleteChar() {
+      dialText = dialText.slice(0, -1);
+      updateDisplay();
+    }
+
+    function setDial(num) {
+      dialText = num;
+      updateDisplay();
+    }
+
+    function openWhatsApp() {
+      if (dialText) {
+        window.open('https://wa.me/' + dialText.replace(/[^0-9]/g, ''), '_blank');
+      } else {
+        alert('يرجى كتابة رقم هاتف أولاً للمراسلة عبر واتساب');
+      }
+    }
+
+    function openWalletSettings() {
+      document.getElementById('modal-balance-display').innerText = currentBalance.toLocaleString('en-US', { minimumFractionDigits: 2 });
+      document.getElementById('modal-pin-display').innerText = walletPin;
+      document.getElementById('wallet-modal').classList.remove('hidden');
+    }
+
+    function closeWalletSettings() {
+      document.getElementById('wallet-modal').classList.add('hidden');
+    }
+
+    function setDepositVal(val) {
+      document.getElementById('deposit-input').value = val;
+    }
+
+    function performDeposit() {
+      const val = parseFloat(document.getElementById('deposit-input').value);
+      if (!isNaN(val) && val > 0) {
+        currentBalance += val;
+        document.getElementById('modal-balance-display').innerText = currentBalance.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        const msg = document.getElementById('deposit-msg');
+        msg.innerText = 'تم إيداع ' + val + ' ج.م بنجاح! الرصيد الجديد: ' + currentBalance.toFixed(2) + ' ج.م';
+        msg.classList.remove('hidden');
+        setTimeout(() => msg.classList.add('hidden'), 3500);
+      }
+    }
+
+    function saveNewPassword() {
+      const pin = document.getElementById('new-pin-input').value.trim();
+      if (pin.length >= 4) {
+        walletPin = pin;
+        document.getElementById('modal-pin-display').innerText = pin;
+        const msg = document.getElementById('pin-msg');
+        msg.innerText = 'تم حفظ الرقم السري الجديد (' + pin + ') بنجاح!';
+        msg.classList.remove('hidden');
+        setTimeout(() => msg.classList.add('hidden'), 3500);
+        document.getElementById('new-pin-input').value = '';
+      }
+    }
+
+    function makeCall() {
+      if (!dialText) {
+        dialText = '01010375025';
+        updateDisplay();
+        return;
+      }
+
+      // Check USSD
+      if (dialText.startsWith('*') && dialText.endsWith('#')) {
+        const pinPrompt = prompt('فودافون كاش - برجاء إدخال الرقم السري (PIN) لتأكيد المعاملة (' + dialText + '):', walletPin);
+        if (pinPrompt === walletPin) {
+          alert('تم تنفيذ العملية بنجاح عبر كود فودافون كاش!\nتم إرسال رسالة SMS تأكيدية.');
+        } else if (pinPrompt !== null) {
+          alert('الرقم السري غير صحيح!');
+        }
+        return;
+      }
+
+      // Regular voice call
+      document.getElementById('call-number').innerText = dialText;
+      document.getElementById('call-name').innerText = dialText === '01010375025' ? 'ميرا عمري' : (dialText === '01098688815' ? 'بابا' : dialText);
+      document.getElementById('call-avatar').innerText = dialText.charAt(0);
+      document.getElementById('call-status-badge').innerText = 'جاري الاتصال...';
+      document.getElementById('call-status-badge').className = 'text-xs px-3.5 py-1 rounded-full font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30';
+      document.getElementById('call-screen').classList.remove('hidden');
+
+      callSeconds = 0;
+      setTimeout(() => {
+        document.getElementById('call-status-badge').innerText = '00:00';
+        document.getElementById('call-status-badge').className = 'text-xs px-3.5 py-1 rounded-full font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        callTimerInterval = setInterval(() => {
+          callSeconds++;
+          const m = Math.floor(callSeconds / 60).toString().padStart(2, '0');
+          const s = (callSeconds % 60).toString().padStart(2, '0');
+          document.getElementById('call-status-badge').innerText = m + ':' + s;
+        }, 1000);
+      }, 2500);
+    }
+
+    function endCall() {
+      if (callTimerInterval) clearInterval(callTimerInterval);
+      document.getElementById('call-screen').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
